@@ -28,7 +28,7 @@ export default function UserTable({tabledata}) {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                <img width ={50} src={data?.avatar}/>
+                <img width ={50} alt="image not found" src={data?.avatar}/>
               </TableCell>
               <TableCell align="right">{data.id}</TableCell>
               <TableCell align="right">{data.first_name+' '+ data.last_name}</TableCell>
