@@ -19,9 +19,9 @@ import ListItemText from '@mui/material/ListItemText';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import { useNavigate } from 'react-router-dom';
-
+import LoginIcon from '@mui/icons-material/Login';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 const drawerWidth = 240;
-
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     flexGrow: 1,
@@ -69,7 +69,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 export default function Layout({children}) {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const navigate = useNavigate()
 
   const handleDrawerOpen = () => {
@@ -119,8 +119,19 @@ export default function Layout({children}) {
         </DrawerHeader>
         <Divider />
         <List>
+   
+
+        <ListItem  disablePadding>       
+           <ListItemButton onClick={()=>navigate('/login')}>
+             <ListItemIcon>
+                <LoginIcon />
+             </ListItemIcon>
+             <ListItemText primary={"Login"} />
+           </ListItemButton>
+         </ListItem>
+         
           <ListItem  disablePadding>
-              <ListItemButton onClick={()=>navigate('/')}>
+              <ListItemButton onClick={()=>navigate('/users')}>
                 <ListItemIcon>
                    <PeopleAltIcon />
                 </ListItemIcon>

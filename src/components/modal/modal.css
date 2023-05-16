@@ -1,0 +1,24 @@
+.modalcontainer {
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    position: fixed;
+    top: 45%;
+    left: 53%;
+    transform: translate(-50%, -50%);
+    z-index: 1032;
+}
+
+.clase-btn {
+    border-color: #ffffff;
+    background-color: #ffffff;
+    width: 5%;
+    position: absolute;
+    right:0px;
+    /* bottom: 2px;   */
+    top:1px;
+}

@@ -1,48 +1,34 @@
 import React from "react";
-import Layout from "../components/layout";
-// import { Adduserdata } from "../api/api";
-import {adduserValidation} from "../validations"
+import './modal.css'
 import { Formik } from "formik";
+// import adduserValidation from "../../validations";
+import { Button, Typography ,Grid} from "@mui/material";
 
-const Adduser = () => {
-   
-    const handleadduser = (values, setSubmitting) => {
-        console.log('values',values)
-        // alert()
-        // Adduserdata({ email: values.email, first_name: values.first_name,last_name:values.last_name })
-        //     .then(response => {
-        //         console.log("response",response);
-        //         setSubmitting(false)
-        //     })
-        if (localStorage.getItem('data')== null) {
-            localStorage.setItem('data','[]');
-          }
-          let old_data = JSON.parse(localStorage.getItem('data'))
-        console.log('old',old_data.length)
-        
-         let id = old_data.length>0 && old_data[old_data.length - 1].id   || 0; 
-         id++      
-          old_data.push({id,...values})
-          localStorage.setItem('data',JSON.stringify(old_data))
-        
-          setSubmitting(false)
-    }
-
-    return (
-        <>
-            <Layout>
-                <h1>Adduser</h1>
-                <Formik initialValues={{
-                    email: '',
-                    first_name: '',
-                    last_name:'',
-                    password:'',
-                    confirmpassword:'',
-                    userIMGurl :''
+const EditModal = ({showmodal,setfilterdata,setshowmodal,Editindex,filterdata}) => {
+   const handleEdituser = (values, setSubmitting) => {
+    const EditData = { id :filterdata[Editindex].id,...values}
+    const updateData = JSON.parse(localStorage.getItem('data'))
+    updateData.splice(Editindex,1,EditData)
+    setfilterdata(updateData)
+    localStorage.setItem('data',JSON.stringify(updateData))
+       setSubmitting(false)
+       setshowmodal(false)
+  }
+   return(
+    <>
+    {showmodal &&
+        <div className="modalcontainer">  
+           <button className="clase-btn" onClick={()=>setshowmodal(false)}> <span aria-hidden="true">&times;</span></button>
+           <Typography mb={2} variant="subtitle">EDIT USER DETAILS</Typography> 
+           <Formik initialValues={{
+                    email: filterdata[Editindex].email,
+                    first_name: filterdata[Editindex].first_name,
+                    last_name:filterdata[Editindex].last_name,
+                    // userIMGurl :''
                  }}
-                    validationSchema={adduserValidation}
+                    // validationSchema={adduserValidation}
                     onSubmit={(values, { setSubmitting }) => {
-                        handleadduser(values, setSubmitting)
+                        handleEdituser(values, setSubmitting)
                     }}
                 >
                     {({ errors, touched, handleChange, handleBlur, values, onSubmit, handleSubmit, isSubmitting }) => {
@@ -86,7 +72,7 @@ const Adduser = () => {
                                 </div>
                                 {touched.last_name && errors.last_name ? (<div className="text-danger">{errors.last_name}</div>) : null}
                                
-                                <div className="input-group mt-3">
+                                {/* <div className="input-group mt-3">
                                     <input
                                         className="form-control"
                                         name="userIMGurl"
@@ -96,48 +82,21 @@ const Adduser = () => {
                                         onBlur={handleBlur}
                                         value={values.userIMGurl}
                                     />
-                                </div>
-                                 {/* {touched.last_name && errors.last_name ? (<div className="text-danger">{errors.last_name}</div>) : null} */}
-
-                                 <div className="input-group mt-3">
-                                    <input
-                                        className="form-control"
-                                        name="password"
-                                        type="password"
-                                        placeholder="password"
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.password}
-                                    />
-                                </div>
-                                 {touched.password && errors.password ? (<div className="text-danger">{errors.password}</div>) : null}
-                
-                                 <div className="input-group mt-3">
-                                    <input
-                                        className="form-control"
-                                        name="confirmpassword"
-                                        type="password"  
-                                        placeholder="confirmpassword"
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.confirmpassword}
-                                    />
-                                </div>
-                                 {touched.confirmpassword && errors.confirmpassword ? (<div className="text-danger">{errors.confirmpassword }</div>) : null}
-
+                                </div> */}
+                                {/* {touched.last_name && errors.last_name ? (<div className="text-danger">{errors.last_name}</div>) : null} */}
 
                                 <div className="row mt-3">
                                     <div className="col-6">
-                                        <button className="btn btn-primary" disabled={isSubmitting} type="submit" onClick={handleSubmit}>Add User</button>
+                                        <button className="btn btn-primary px-4" disabled={isSubmitting} type="submit" onClick={handleSubmit}>Edit User Data </button>
                                     </div>
                                 </div>
                             </form>
                         );
                     }}
                 </Formik>
-            </Layout>
-        </>
-    )
-
+        </div>
+    }
+    </>
+   )  
 }
-export default Adduser;
+export default EditModal;

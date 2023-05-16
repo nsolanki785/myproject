@@ -1,0 +1,43 @@
+.container {
+    border-radius: 8px;
+    box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
+    display: inline-block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 30%;
+    height:50%;
+    margin: auto;
+    background-color: white;
+}
+
+.form-container {
+   position: relative;
+   left:10%;
+   top:12%;
+   bottom: 5%;
+   padding: 2px;
+}
+
+.input-field {
+  width: 80%;
+  height: 20%;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+.add-btn {  
+  width: 80%;
+  height: 20%;
+  padding: 15px;
+  margin-top: 15px;
+  background-color:  #04AA6D;
+  border-color: #04AA6D;
+  color: white;
+}
+
+.error-alert {
+  color: red;
+}
