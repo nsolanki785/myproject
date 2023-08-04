@@ -3,8 +3,10 @@ import Layout from "../components/layout";
 // import { Adduserdata } from "../api/api";
 import {adduserValidation} from "../validations"
 import { Formik } from "formik";
+import { useNavigate } from "react-router-dom";
 
 const Adduser = () => {
+    const navigate = useNavigate()
    
     const handleadduser = (values, setSubmitting) => {
         console.log('values',values)
@@ -26,6 +28,7 @@ const Adduser = () => {
           localStorage.setItem('data',JSON.stringify(old_data))
         
           setSubmitting(false)
+          navigate('/users')
     }
 
     return (

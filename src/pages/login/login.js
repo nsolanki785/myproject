@@ -63,7 +63,7 @@ const Login = () => {
                                     <input
                                         className="input-field "
                                         placeholder="Email"
-                                        type="email"
+                                        type="text"
                                         name="email"
                                         onChange={handleChange}
                                         onBlur={handleBlur}
